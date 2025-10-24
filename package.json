@@ -1,0 +1,34 @@
+{
+	"name": "blocker",
+	"version": "1.0.0",
+	"module": "index.ts",
+	"type": "module",
+	"private": true,
+	"devDependencies": {
+		"@types/bun": "latest",
+		"wxt": "^0.20.11"
+	},
+	"peerDependencies": {
+		"typescript": "^5"
+	},
+	"overrides": {
+		"@wxt-dev/storage": "1.2.0"
+	},
+	"scripts": {
+		"dev": "wxt",
+		"dev:firefox": "wxt -b firefox",
+		"build": "wxt build",
+		"build:firefox": "wxt build -b firefox",
+		"zip": "wxt zip",
+		"zip:firefox": "wxt zip -b firefox",
+		"postinstall": "wxt prepare",
+		"format": "bunx biome format --write",
+		"lint": "bunx biome lint --write"
+	},
+	"dependencies": {
+		"@types/react-dom": "^19.2.2",
+		"@wxt-dev/module-react": "^1.1.5",
+		"react": "^19.2.0",
+		"react-dom": "^19.2.0"
+	}
+}

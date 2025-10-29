@@ -2,19 +2,29 @@
 
 ## Commands
 
-- **Build**: `bun run build` (Firefox: `wxt build -b firefox`)
-- **Dev**: `bun run dev:firefox` (Firefox: `wxt -b firefox`)
-- **Format**: `bunx biome format --write`
-- **Lint**: `bunx biome lint --write`
-- **Zip**: `bun run zip` (Firefox: `wxt zip -b firefox`)
+- **Dev**: `bun run dev` (Firefox: `bun run dev:firefox`)
+- **Build**: `bun run build` (Firefox: `bun run build:firefox`)
+- **Format**: `bun run format` (Biome with tabs, double quotes)
+- **Lint**: `bun run lint` (Biome recommended rules)
+- **Test**: `bun run test` (single test: `bun run test path/to/test.test.ts`)
+- **Typecheck**: `bun run typecheck`
+- **Zip**: `bun run zip` (Firefox: `bun run zip:firefox`)
+- **Postinstall**: `bun run postinstall` (WXT prepare)
 
 ## Code Style
 
-- **Formatting**: Biome with tab indentation, double quotes
-- **TypeScript**: Strict mode, ESNext target, React JSX
-- **Imports**: Auto-organized, use `@/` path aliases
-- **Components**: Arrow functions with typed props `{}`
-- **Naming**: camelCase for variables/functions, PascalCase for components
-- **Error Handling**: Standard try/catch, console logging for debugging
-- **Styling**: Tailwind CSS classes in className attributes
+- **Formatting**: Biome (tabs, double quotes, auto-organize imports)
+- **TypeScript**: ESNext target, React JSX, strict checks (noUnusedLocals/Parameters disabled)
+- **Imports**: Use `@/` aliases, auto-organized by Biome
+- **Components**: Arrow functions with typed props `{}`, PascalCase
+- **Naming**: camelCase for vars/functions, PascalCase for components/types
+- **Error Handling**: try/catch with console logging for debugging
+- **Styling**: Tailwind CSS in className, no custom CSS unless necessary
+- **Browser Extension**: Use WXT framework, browser API for cross-browser compatibility
+- **Context**: Use context 7 mcp for enhanced code understanding
 
+## Project Structure
+
+- `src/entrypoints/` - Extension entry points (popup, background, content)
+- `src/assets/` - Static assets (CSS, images)
+- Build output in `dist/`, use WXT for Firefox/Chrome builds

@@ -1,0 +1,53 @@
+name: Build and Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Bun
+      uses: oven-sh/setup-bun@v1
+      with:
+        bun-version: latest
+        
+    - name: Install dependencies
+      run: bun install
+      
+    - name: Run tests
+      run: bun run test
+      
+    - name: Type check
+      run: bun run typecheck
+      
+    - name: Lint
+      run: bun run lint
+      
+    - name: Build for Chrome
+      run: bun run build
+      
+    - name: Build for Firefox
+      run: bun run build:firefox
+      
+    - name: Create Chrome zip
+      run: bun run zip
+      
+    - name: Create Firefox zip
+      run: bun run zip:firefox
+      
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: extension-builds
+        path: |
+          dist-wxt/chrome-mv3/*.zip
+          dist-wxt/firefox-mv3/*.zip
+        retention-days: 30

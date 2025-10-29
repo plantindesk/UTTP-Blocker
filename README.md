@@ -16,18 +16,18 @@ Available now on the **Chrome Web Store**, **Microsoft Edge Add-ons**, and **Fir
 
 ## How It Works
 
-1. **Content Script Activation (`content-scripts/index.ts`)**  
+1. **Content Script Activation (`content/index.ts`)**  
    The extension injects a content script into all YouTube pages (`*://*.youtube.com/*`). This script monitors the comment section for any changes to the DOM, such as new comments being loaded or replies being expanded.
 
 2. **DOM Monitoring with MutationObserver**  
    A `MutationObserver` watches for changes in the YouTube comment section (`document.body`). Whenever new comment elements appear (for example, after scrolling or clicking “View replies”), the observer triggers a rescan of the comments.
 
-3. **Comment Scanning (`comment-scraper.ts`)**  
+3. **Comment Scanning (`content/comment-scraper.ts`)**  
    The comment scraper iterates through all comment elements (`ytd-comment-view-model`, `ytd-comment-renderer`) and extracts the author’s name and comment text.
    - If the author’s username **starts with `@UTTP`**, the comment is **immediately removed from the DOM**.
    - All other comments are collected and sent to the background script for optional storage.
 
-4. **Background Message Handling (`background/index.ts`)**  
+4. **Background Message Handling (`entrypoints/background/index.ts`)**  
    The background script listens for messages of type `"comments"` from the content script. When received, it logs the scraped comments and stores them in the browser’s local storage (`localStorage.setItem("youtube_comments", ...)`) for reference or debugging.
 
 ## Installation (Manual / Development)
@@ -39,24 +39,25 @@ Available now on the **Chrome Web Store**, **Microsoft Edge Add-ons**, and **Fir
 > - [Microsoft Edge Add-ons](#)
 > - [Firefox Add-ons](#)
 
-### Load Unpacked Extension (Developer Mode)
+### Development Setup
 
 1. **Download or clone** this repository to your local machine.
-2. Open your browser’s **Extensions** or **Add-ons** page:
+2. Run `bun dev` for chrome, `bun dev:firefox` for firefox.
+3. Open your browser’s **Extensions** or **Add-ons** page:
    - **Chrome / Edge:** `chrome://extensions/`
    - **Firefox:** `about:debugging#/runtime/this-firefox`
-3. **Enable Developer Mode** (usually a toggle in the top-right corner).
-4. Click **“Load unpacked”** (or **“Load temporary add-on”** in Firefox).
-5. Select the folder containing this project’s files (with the `manifest.json` file).
-6. Open YouTube and visit any video page — bot comments from “@UTTP” users will automatically disappear in real time.
+4. **Enable Developer Mode** (usually a toggle in the top-right corner).
+5. Click **“Load unpacked”** (or **“Load temporary add-on”** in Firefox).
+6. Select the folder containing this project’s files (with the `manifest.json` file).
+7. Open YouTube and visit any video page — bot comments from “@UTTP” users will automatically disappear in real time.
 
 ## Technical Overview
 
-| Component             | File                                 | Purpose                                                                            |
-| --------------------- | ------------------------------------ | ---------------------------------------------------------------------------------- |
-| **Background Script** | `background/index.ts`                | Receives messages from the content script and logs comments to local storage.      |
-| **Content Script**    | `content-scripts/index.ts`           | Injected into YouTube pages; observes DOM mutations and triggers comment scraping. |
-| **Comment Scraper**   | `content-scripts/comment-scraper.ts` | Scans and removes comments authored by accounts starting with `@UTTP`.             |
+| Component             | File                              | Purpose                                                                            |
+| --------------------- | --------------------------------- | ---------------------------------------------------------------------------------- |
+| **Background Script** | `entrypoints/background/index.ts` | Receives messages from the content script and logs comments to local storage.      |
+| **Content Script**    | `content/index.ts`                | Injected into YouTube pages; observes DOM mutations and triggers comment scraping. |
+| **Comment Scraper**   | `content/comment-scraper.ts`      | Scans and removes comments authored by accounts starting with `@UTTP`.             |
 
 ## Privacy
 
@@ -71,4 +72,3 @@ This project is licensed under the **MIT License**. You are free to use, modify,
 If you encounter issues, false positives, or have suggestions for improvement, please open an issue or submit a pull request on the project repository.
 
 ### Enjoy a cleaner YouTube experience — free from UTTP spam
-

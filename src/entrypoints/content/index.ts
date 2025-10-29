@@ -1,26 +1,45 @@
-function scrapeComments() {
-  const commentElements = document.querySelectorAll("ytd-comment-view-model");
-  const comments: { author: string; commentText: string }[] = [];
+const MESSAGE_TYPE_COMMENTS = "comments";
+const REPLIES_BUTTON_SELECTORS =
+	"tp-yt-paper-button#more-replies, .yt-touch-feedback-shape";
 
-  commentElements.forEach((comment) => {
-    const authorElement = comment.querySelector("#author-text");
-    const commentTextElement = comment.querySelector("#content-text");
+import scrapeComments from "./comment-scraper";
 
-    if (authorElement && commentTextElement) {
-      const author = (authorElement as HTMLElement).innerText;
-      const commentText = (commentTextElement as HTMLElement).innerText;
-
-      comments.push({ author, commentText });
-    }
-  });
-
-  return comments;
+function sendComments(delay = 0) {
+	setTimeout(() => {
+		const comments = scrapeComments();
+		browser.runtime.sendMessage({ type: MESSAGE_TYPE_COMMENTS, comments });
+	}, delay);
 }
-const comments = scrapeComments();
-console.log(comments);
+
 export default defineContentScript({
-  matches: ["*://*.youtube.com/*"],
-  main(ctx) {
-    browser.runtime.sendMessage({ type: "comments", comments });
-  },
+	matches: ["*://*.youtube.com/*"],
+	main(ctx) {
+		const observerCallback = (mutationsList: MutationRecord[]) => {
+			mutationsList.forEach((mutation) => {
+				if (mutation.type === "childList") {
+					// Scrape comments and send updated list when DOM changes
+					sendComments();
+				}
+			});
+		};
+
+		const observer = new MutationObserver(observerCallback);
+
+		sendComments();
+
+		observer.observe(document.body, {
+			childList: true,
+			subtree: true,
+		});
+
+		document.body.addEventListener("click", (e) => {
+			if ((e.target as HTMLElement).closest(REPLIES_BUTTON_SELECTORS)) {
+				sendComments(2000);
+			}
+		});
+
+		ctx.onInvalidated(() => {
+			observer.disconnect();
+		});
+	},
 });

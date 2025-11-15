@@ -120,3 +120,4 @@ This project is licensed under the **GPL-3.0 License**. You are free to use, mod
 [Issues]: https://github.com/plantindesk/uttp-blocker/issues
 [License]: https://github.com/plantindesk/uttp-blocker/blob/main/LICENSE
 [Mozilla]: https://addons.mozilla.org/en-US/firefox/addon/uttp-blocker/
+[Edge]: https://microsoftedge.microsoft.com/addons/detail/uttp-blocker/fpgmldjneadjblaegmnileheeehjpjih

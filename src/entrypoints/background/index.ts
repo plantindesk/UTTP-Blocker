@@ -1,69 +1,74 @@
+import DOMPurify from "dompurify";
+import { JSDOM } from "jsdom";
 import { defineBackground } from "wxt/utils/define-background";
+import z from "zod";
 import { storage } from "#imports";
 
-interface Comment {
-	author: string;
-	commentText: string;
-}
+const CommentSchema = z.object({
+	author: z.string(),
+	commentText: z.string(),
+});
 
-interface ValidatedMessage {
-	type: "comments";
-	comments: Comment[];
-}
+const MessageSchema = z.object({
+	type: z.literal("comments"),
+	comments: z.array(CommentSchema),
+});
 
+type Comment = z.infer<typeof CommentSchema>;
+type ValidatedMessage = z.infer<typeof MessageSchema>;
+
+const { window } = new JSDOM("<!DOCTYPE> html");
+const purified = DOMPurify(window);
 // const DEBUG = true;
 // function log(...args: any[]) {
 //	if (DEBUG) console.log("[YT Background]", ...args);
 // }
 
 function isValidMessage(msg: unknown): msg is ValidatedMessage {
-	if (typeof msg !== "object" || msg === null) return false;
-	const message = msg as Record<string, unknown>;
-	if (message.type !== "comments") return false;
-	if (!Array.isArray(message.comments)) return false;
-
-	return message.comments.every((comment) => {
-		if (typeof comment !== "object" || comment === null) return false;
-		const commentObj = comment as Record<string, unknown>;
-		return (
-			typeof commentObj.author === "string" &&
-			typeof commentObj.commentText === "string"
-		);
-	});
+	return MessageSchema.safeParse(msg).success;
 }
 
 // Use a more robust sanitization library or context-aware escaping
 function sanitizeForHTML(text: string): string {
-	return text
-		.replace(/&/g, "&amp;")
-		.replace(/</g, "&lt;")
-		.replace(/>/g, "&gt;")
-		.replace(/"/g, "&quot;")
-		.replace(/'/g, "&#x27;")
-		.substring(0, 10000);
+	const sanitize = purified.sanitize(text);
+	return sanitize.substring(0, 10000);
 }
 
-function generateSignature(comment: Comment): string {
-	return btoa(`${comment.author}:${comment.commentText}:${Date.now()}`).slice(
-		0,
-		16,
-	);
+async function generateSignature(comment: Comment): Promise<string> {
+	const encoder = new TextEncoder();
+	const data = encoder.encode(`${comment.author}:${comment.commentText}`);
+	const hash = await crypto.subtle.digest("SHA-256", data);
+	return Array.from(new Uint8Array(hash))
+		.map((b) => b.toString(16).padStart(2, "0"))
+		.join("")
+		.slice(0, 10);
 }
-
+const commentsStorage = storage.defineItem<{
+	comments: Array<Comment & { timestamp: number; signature: string }>;
+	lastUpdated: number;
+	count: number;
+	version: string;
+}>("local:youtube_comments", {
+	fallback: {
+		comments: [],
+		lastUpdated: 0,
+		count: 0,
+		version: "1.0",
+	},
+});
 // Add integrity checks or use more secure storage
 async function storeComments(comments: Comment[]): Promise<void> {
 	const safeComments = await Promise.all(
 		comments.map(async (comment) => ({
 			author: sanitizeForHTML(comment.author),
 			commentText: sanitizeForHTML(comment.commentText),
-			// Add timestamp and signature for integrity
 			timestamp: Date.now(),
-			signature: generateSignature(comment),
+			signature: await generateSignature(comment),
 		})),
 	);
 
-	// Consider using chrome.storage.local with proper permissions
-	await storage.setItem("local:youtube_comments", {
+	// Use the defined storage item
+	await commentsStorage.setValue({
 		comments: safeComments,
 		lastUpdated: Date.now(),
 		count: safeComments.length,
@@ -91,8 +96,7 @@ function isValidYouTubeOrigin(url: string): boolean {
 		return (
 			hostname === "www.youtube.com" ||
 			hostname === "youtube.com" ||
-			hostname === "m.youtube.com" ||
-			(hostname.endsWith(".youtube.com") && hostname.split(".").length === 2)
+			hostname === "m.youtube.com"
 		);
 	} catch {
 		return false;

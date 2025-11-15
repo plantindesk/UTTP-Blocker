@@ -113,7 +113,7 @@ This project is licensed under the **GPL-3.0 License**. You are free to use, mod
 [Badge License]: https://img.shields.io/badge/License-GPLv3-blue.svg
 [Badge Chrome]: https://img.shields.io/chrome-web-store/rating/gkmfblpdednjolbkjbdnpfildngnlefk?label=Chrome
 [Badge Edge]: https://img.shields.io/badge/dynamic/json?label=Edge&color=brightgreen&query=%24.averageRating&suffix=%2F%35&url=https%3A%2F%2Fmicrosoftedge.microsoft.com%2Faddons%2Fgetproductdetailsbycrxid%2Ffpgmldjneadjblaegmnileheeehjpjih
-[Badge Issues]: https://img.shields.io/github/issues/uBlockOrigin/uBlock-issues
+[Badge Issues]: https://img.shields.io/github/issues/plantindesk/uttp-blocker
 [Chrome]: https://chrome.google.com/webstore/detail/uttp-blocker/gkmfblpdednjolbkjbdnpfildngnlefk
 [Commit Rate]: https://img.shields.io/github/commit-activity/m/plantindesk/uttp-blocker
 [Firefox]: https://addons.mozilla.org/en-US/firefox/addon/uttp-blocker/

@@ -1,7 +1,7 @@
 # YouTube UTTP Bot Blocker
 
 <p align="center">
-  <img src="https://github.com/plantindesk/UTTP-Blocker/blob/main/src/assets/avatar.svg" alt="YouTube UTTP Bot Blocker Logo" width="64" height="64">
+  <img src="https://github.com/plantindesk/UTTP-Blocker/blob/main/src/assets/avatar.svg" alt="YouTube UTTP Bot Blocker Logo" width="128" height="128">
 </p>
 
 [![Badge Commits]][Commit Rate]
@@ -14,10 +14,10 @@
 
 | Browser | Install from ... | 
 | :-------: | ---------------- | 
-| <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Google_Chrome_icon_%28September_2014%29.svg" alt="Chrome" width="24"> | <a href="https://chromewebstore.google.com/detail/uttp-blocker/gkmfblpdednjolbkjbdnpfildngnlefk">Chrome Web Store</a> |
-| <img src="https://en.wikipedia.org/wiki/Firefox#/media/File:Firefox_logo,_2019.svg" alt="Firefox" width="24"> | <a href="https://addons.mozilla.org/en-US/firefox/addon/uttp-blocker/">Firefox Add-ons</a> | 
+| <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/Google_Chrome_icon_(February_2022).svg" alt="Chrome" width="24"> | <a href="https://chromewebstore.google.com/detail/uttp-blocker/gkmfblpdednjolbkjbdnpfildngnlefk">Chrome Web Store</a> |
+| <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Firefox_logo%2C_2019.svg/1280px-Firefox_logo%2C_2019.svg.png" alt="Firefox" width="24"> | <a href="https://addons.mozilla.org/en-US/firefox/addon/uttp-blocker/">Firefox Add-ons</a> | 
 | <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/Microsoft_Edge_logo_%282019%29.svg" alt="Edge" width="24"> | <a href="https://microsoftedge.microsoft.com/addons/detail/uttp-blocker/fpgmldjneadjblaegmnileheeehjpjih">Microsoft Edge Add-ons</a> | 
-|<img src="https://en.wikipedia.org/wiki/GitHub#/media/File:GitHub_Invertocat_Logo.svg" alt="Github" width="24">| <a href="https://github.com/plantindesk/UTTP-Blocker/releases/latest">GitHub</a> |
+|<img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="Github" width="24">| <a href="https://github.com/plantindesk/UTTP-Blocker/releases/latest">GitHub</a> |
 ***
 
 YouTube UTTP Bot Blocker is a lightweight browser extension that automatically detects and removes spam comments posted by UTTP (YouTube Troll Police) bot accounts on YouTube. These bots typically use usernames beginning with "@UTTP" and flood comment sections with repetitive or malicious messages.

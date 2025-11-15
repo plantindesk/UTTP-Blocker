@@ -4,12 +4,11 @@
   <img src="https://github.com/plantindesk/UTTP-Blocker/blob/main/src/assets/avatar.svg" alt="YouTube UTTP Bot Blocker Logo" width="128" height="128">
 </p>
 
-[![Badge Commits]][Commit Rate]
-[![Badge Issues]][Issues]
-[![Badge License]][License]
-[![Badge NPM]][NPM]
-[![Badge Mozilla]][Mozilla]
-[![Badge Chrome]][Chrome]
+![GitHub commit activity](https://img.shields.io/github/commit-activity/t/plantindesk/UTTP-Blocker)
+![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/plantindesk/UTTP-Blocker)
+![GitHub License](https://img.shields.io/github/license/plantindesk/UTTP-Blocker)
+![Mozilla Add-on Downloads](https://img.shields.io/amo/dw/uttp-blocker)
+![Chrome Web Store Users](https://img.shields.io/chrome-web-store/users/gkmfblpdednjolbkjbdnpfildngnlefk)
 [![Badge Edge]][Edge]
 
 | Browser | Install from ... | 
@@ -108,3 +107,6 @@ Your feedback and contributions help make YouTube a better place for everyone.
 ## License
 
 This project is licensed under the **GPL-3.0 License**. You are free to use, modify, and distribute it under the terms of that license.
+
+[Edge]: https://img.shields.io/badge/dynamic/json?label=Edge%20Add-ons&query=%24.version&url=https%3A%2F%2Fmicrosoftedge.microsoft.com%2Faddons%2Fgetproductdetailsbycrxid%2Ffp%2Fgkmfblpdednjolbkjbdnpfildngnlefk
+

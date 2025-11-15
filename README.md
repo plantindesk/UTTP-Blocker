@@ -16,7 +16,7 @@
 | <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/Google_Chrome_icon_(February_2022).svg" alt="Chrome" width="24"> | <a href="https://chromewebstore.google.com/detail/uttp-blocker/gkmfblpdednjolbkjbdnpfildngnlefk">Chrome Web Store</a> |
 | <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Firefox_logo%2C_2019.svg/1280px-Firefox_logo%2C_2019.svg.png" alt="Firefox" width="24"> | <a href="https://addons.mozilla.org/en-US/firefox/addon/uttp-blocker/">Firefox Add-ons</a> | 
 | <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/Microsoft_Edge_logo_%282019%29.svg" alt="Edge" width="24"> | <a href="https://microsoftedge.microsoft.com/addons/detail/uttp-blocker/fpgmldjneadjblaegmnileheeehjpjih">Microsoft Edge Add-ons</a> | 
-|<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/GitHub_Invertocat_Logo.svg/1280px-GitHub_Invertocat_Logo.svg.png" alt="Github" width="24">| <a href="https://github.com/plantindesk/UTTP-Blocker/releases/latest">GitHub</a> |
+|<img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="Github" width="24">| <a href="https://github.com/plantindesk/UTTP-Blocker/releases/latest">GitHub</a> |
 ***
 
 YouTube UTTP Bot Blocker is a lightweight browser extension that automatically detects and removes spam comments posted by UTTP (YouTube Troll Police) bot accounts on YouTube. These bots typically use usernames beginning with "@UTTP" and flood comment sections with repetitive or malicious messages.
@@ -114,3 +114,9 @@ This project is licensed under the **GPL-3.0 License**. You are free to use, mod
 [Badge Chrome]: https://img.shields.io/chrome-web-store/rating/gkmfblpdednjolbkjbdnpfildngnlefk?label=Chrome
 [Badge Edge]: https://img.shields.io/badge/dynamic/json?label=Edge&color=brightgreen&query=%24.averageRating&suffix=%2F%35&url=https%3A%2F%2Fmicrosoftedge.microsoft.com%2Faddons%2Fgetproductdetailsbycrxid%2Ffp%gkmfblpdednjolbkjbdnpfildngnlefk
 [Badge Issues]: https://img.shields.io/github/issues/uBlockOrigin/uBlock-issues
+[Chrome]: https://chrome.google.com/webstore/detail/uttp-blocker/gkmfblpdednjolbkjbdnpfildngnlefk
+[Commit Rate]: https://img.shields.io/github/commit-activity/m/plantindesk/uttp-blocker
+[Firefox]: https://addons.mozilla.org/en-US/firefox/addon/uttp-blocker/
+[Issues]: https://github.com/plantindesk/uttp-blocker/issues
+[License]: https://github.com/plantindesk/uttp-blocker/blob/main/LICENSE
+[Mozilla]: https://addons.mozilla.org/en-US/firefox/addon/uttp-blocker/
